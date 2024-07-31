@@ -99,10 +99,7 @@ async def start_command(client: Client, message: Message):
 
             except:
                  pass
-         k = await client.send_message(
-        chat_id=message.from_user.id,
-        text=(
-            "<b>❗️ <u>IMPORTANT</u> ❗️</b>\n\n"
+         k = await client.send_message(chat_id=message.from_user.id,text=("<b>❗️ <u>IMPORTANT</u> ❗️</b>\n\n"
             "This video / file will be deleted in 10 minutes (Due to copyright issues).\n\n"
             "📌 Please forward this video / file to somewhere else and start downloading there."
         )
