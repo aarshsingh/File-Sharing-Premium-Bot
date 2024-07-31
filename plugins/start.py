@@ -82,22 +82,36 @@ async def start_command(client: Client, message: Message):
             if DISABLE_CHANNEL_BUTTON:
                 reply_markup = msg.reply_markup
             else:
-                reply_markup = None
+                reply_markup = InlineKeyboardMarkup(
+                    [
+                        [
+                            InlineKeyboardButton("Watch Again", url=f"https://t.me/{client.username}?start={message.command[1]}")
+                        ]
+                    ]
+                )
 
             try:
                 f = await msg.copy(chat_id=message.from_user.id, caption = caption, parse_mode = ParseMode.HTML, reply_markup = reply_markup, protect_content=PROTECT_CONTENT)
 
+            await asyncio.sleep(0.5)
             except FloodWait as e:
                 await asyncio.sleep(e.x)
                 f = await msg.copy(chat_id=message.from_user.id, caption = caption, parse_mode = ParseMode.HTML, reply_markup = reply_markup, protect_content=PROTECT_CONTENT)
 
             except:
-                pass
+                # Send message indicating media was deleted
         k = await client.send_message(chat_id = message.from_user.id, text=f"<b>❗️ <u>IMPORTANT</u> ❗️</b>\n\nThis video / file will be deleted in 10 minutes (Due to copyright issues).\n\n📌 Please forward this video / file to somewhere else and start downloading there.")
         await asyncio.sleep(SECONDS)
         await f.delete()
         await k.edit_text("Your video / file is successfully deleted !")
-
+        reply_markup=InlineKeyboardMarkup(
+                        [
+                            [
+                                InlineKeyboardButton("Watch Again", url=f"https://t.me/{client.username}?start={message.command[1]}")
+                            ]
+                        ]
+                    )
+)
 
         return
     else:
