@@ -99,7 +99,14 @@ async def start_command(client: Client, message: Message):
 
             except:
                 # Send message indicating media was deleted
-        k = await client.send_message(chat_id = message.from_user.id, text=f"<b>❗️ <u>IMPORTANT</u> ❗️</b>\n\nThis video / file will be deleted in 10 minutes (Due to copyright issues).\n\n📌 Please forward this video / file to somewhere else and start downloading there.")
+        k = await client.send_message(
+        chat_id=message.from_user.id,
+        text=(
+            "<b>❗️ <u>IMPORTANT</u> ❗️</b>\n\n"
+            "This video / file will be deleted in 10 minutes (Due to copyright issues).\n\n"
+            "📌 Please forward this video / file to somewhere else and start downloading there."
+        )
+        )
         await asyncio.sleep(SECONDS)
         await f.delete()
         await k.edit_text("Your video / file is successfully deleted !")
