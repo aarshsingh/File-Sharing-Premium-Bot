@@ -98,8 +98,8 @@ async def start_command(client: Client, message: Message):
                 f = await msg.copy(chat_id=message.from_user.id, caption = caption, parse_mode = ParseMode.HTML, reply_markup = reply_markup, protect_content=PROTECT_CONTENT)
 
             except:
-                # Send message indicating media was deleted
-        k = await client.send_message(
+                 pass
+         k = await client.send_message(
         chat_id=message.from_user.id,
         text=(
             "<b>❗️ <u>IMPORTANT</u> ❗️</b>\n\n"
