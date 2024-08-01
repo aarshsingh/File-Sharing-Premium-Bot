@@ -92,7 +92,7 @@ async def start_command(client: Client, message: Message):
                 # Send message indicating media was deleted
                 pass
 
-        k = await client.send_message(chat_id=message.from_user.id, text=f"<b>❗️ <u>IMPORTANT</u> ❗️</b>\n\nThis video / file will be deleted in 10 minutes (Due to copyright issues).\n\n📌 Please forward this video / file to somewhere else and start downloading there.\n\nYour video / file is successfully deleted !\n\nIf you want it again, hit the Watch Again button below.")
+        k = await client.send_message(chat_id=message.from_user.id, text=f"<b>❗️ <u>IMPORTANT</u> ❗️</b>\n\nThis video / file will be deleted in 10 minutes (Due to copyright issues).\n\n📌 Please forward this video / file to somewhere else and start downloading there.")
         await asyncio.sleep(SECONDS)
         await f.delete()
         await k.edit_text("Your video / file is successfully deleted!")
@@ -102,6 +102,11 @@ async def start_command(client: Client, message: Message):
                     InlineKeyboardButton("Watch Again", url=f"https://t.me/{client.username}?start={message.command[1]}")
                 ]
             ]
+        )
+        await client.send_message(
+            chat_id=message.from_user.id,
+            text="Due to copyright issues, the content has been deleted successfully. If you want it again, hit the Watch Again button below.",
+            reply_markup=reply_markup
         )
 
         return
